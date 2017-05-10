@@ -362,13 +362,15 @@ RUN adduser -S nginx-api-gateway -u 1000 \
     && addgroup -S nginx-api-gateway -g 1000
 
 RUN mkdir -p /usr/local/api-gateway \
-    && chown -R nginx-api-gateway /etc/api-gateway /var/log/api-gateway /usr/local /dev/stderr \
+    && chown -R nginx-api-gateway /etc/api-gateway /var/log/api-gateway /usr/local \
     && chmod 755 -R /etc/api-gateway /var/log/api-gateway /usr/local \
     && chmod 4755 /bin/busybox \
     && echo "nginx-api-gateway ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+
+
 # add the default configuration for the Gateway
 
 USER nginx-api-gateway
-
+RUN sudo su nginx-api-gateway
 ENTRYPOINT ["/etc/init-container.sh"]
