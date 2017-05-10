@@ -372,5 +372,5 @@ RUN mkdir -p /usr/local/api-gateway \
 # add the default configuration for the Gateway
 
 USER nginx-api-gateway
-RUN sudo su nginx-api-gateway
+RUN su - nginx-api-gateway
 ENTRYPOINT ["/etc/init-container.sh"]
